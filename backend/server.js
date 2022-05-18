@@ -5,6 +5,8 @@ const superheroesRouters = require('./src/routes/superheroes')
 const habilidadesRouters = require('./src/routes/habilidades')
 const misionesRouters = require('./src/routes/misiones')
 
+app.use(express.json())
+
 app.use('/superheroes', superheroesRouters)
 app.use('/habilidades', habilidadesRouters)
 app.use('/misiones', misionesRouters)
