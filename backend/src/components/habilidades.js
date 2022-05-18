@@ -1,14 +1,14 @@
 module.exports = {
   getAll: (req, res) => {
-    res.sedn("working");
+    res.send("working");
   },
   createOne: (req, res) => {
-    res.sedn("working");
+    res.send("working");
   },
   updateOne: (req, res) => {
-    res.sedn("working");
+    res.send("working");
   },
   deleteOne: (req, res) => {
-    res.sedn("working");
+    res.send("working");
   },
 };
