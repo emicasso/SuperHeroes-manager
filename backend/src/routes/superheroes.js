@@ -1,15 +1,18 @@
 const express = require("express");
 const router = express.Router();
+const superheroesSchema = require("../schemas/superheroes")
+const validate = require("../middlewares/validateData")
+
 const {
   getAll,
   createOne,
   updateOne,
   deleteOne,
-} = require("../components/superheroes");
+} = require("../controllers/superheroes");
 
 router.get("/", getAll);
-router.post("/", createOne);
-router.put("/", updateOne);
-router.delete("/", deleteOne);
+router.post("/", validate(superheroesSchema), createOne);
+router.put("/", validate(superheroesSchema), updateOne);
+router.delete("/:_id", deleteOne);
 
 module.exports = router;
