@@ -8,7 +8,7 @@ const {
   createOne,
   updateOne,
   deleteOne,
-} = require("../controllers/misionesMSU");
+} = require("../controllers/misionesMR");
 
 router.get("/", getAll);
 router.post("/", validate(misionesMRSchema), createOne);
