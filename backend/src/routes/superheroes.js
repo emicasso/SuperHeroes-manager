@@ -5,6 +5,7 @@ const validate = require("../middlewares/validateData")
 
 const {
   getAll,
+  getUser,
   createOne,
   updateOne,
   deleteOne,
@@ -20,6 +21,7 @@ const {
 } = require("../controllers/superheroes");
 
 router.get("/", getAll);
+router.get("/getUser/:_id", getUser);
 router.post("/", validate(superheroesSchema), createOne);
 router.put("/:_id", validate(superheroesSchema), updateOne);
 router.put("/assignHab/:_id", assignHab);

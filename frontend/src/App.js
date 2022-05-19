@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import SuperheroesData from "./Components/SuperheroesData";
+import Info from "./Components/Info";
+import Navbar from "./Components/Navbar";
+import Register from "./Components/Register";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<SuperheroesData />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/view/:id" element={<Info />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

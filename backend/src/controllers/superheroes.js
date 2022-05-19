@@ -100,4 +100,12 @@ module.exports = {
     });
     res.send(`${superheroUpdate.name} update`);
   },
+  
+  //get superheroe individual
+  getUser: async (req, res) => {
+    const { _id } = req.params;
+    const hoeroIndividual = await superheroesModel.findById({ _id: _id });
+    console.log(hoeroIndividual);
+    res.send(hoeroIndividual);
+  }
 };
