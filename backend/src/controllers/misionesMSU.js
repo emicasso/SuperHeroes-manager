@@ -1,41 +1,44 @@
 const {
-  mongo: { habilidadesModel },
+  mongo: { misionesMSUModel },
 } = require("../../databases");
 
 module.exports = {
-  //listar todas las habilidades existentes
+  //listar todas las misiones existentes
   getAll: async (req, res) => {
-    const habilidades = await habilidadesModel.find();
-    res.json(habilidades);
+    const misiones = await misionesMSUModel.find();
+    res.send(misiones);
   },
 
-  //crear nueva habilidad
+  //crear nueva mision
   createOne: async (req, res) => {
     const { name, superheroes } = req.body;
-    const newHabilidad = new habilidadesModel({
+    const newMision = new misionesMSUModel({
+      type,
       name,
       superheroes,
     });
-    await newHabilidad.save();
+    await newMision.save();
     res.send(`${name} saved`);
   },
 
-  //actualizar una habilidad
+  //actualizar una mision
   updateOne: async (req, res) => {
     const { _id } = req.params;
     const { name, superheroes } = req.body;
-    await habilidadesModel.findByIdAndUpdate(_id, {
-      $set: { name, superheroes },
-    },
-    { useFindAndModify: false}
+    await misionesMSUModel.findByIdAndUpdate(
+      _id,
+      {
+        $set: { name, superheroes },
+      },
+      { useFindAndModify: false }
     );
     res.send(`${name} update`);
   },
 
-  //borrar una habilidad
+  //borrar una mision
   deleteOne: async (req, res) => {
     const { _id } = req.params;
-    const remove = await habilidadesModel.findByIdAndDelete(_id);
+    const remove = await misionesMSUModel.findByIdAndDelete(_id);
     console.log(remove);
     res.send(`${remove.name} Deleted from database`);
   },

@@ -12,7 +12,7 @@ const {
 
 router.get("/", getAll);
 router.post("/", validate(habilidadesSchema), createOne);
-router.put("/", validate(habilidadesSchema), updateOne);
+router.put("/:_id", validate(habilidadesSchema), updateOne);
 router.delete("/:_id", deleteOne);
 
 module.exports = router;

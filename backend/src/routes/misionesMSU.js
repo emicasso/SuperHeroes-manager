@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const misionesSchema = require("../schemas/misiones")
+const misionesMSUSchema = require("../schemas/misionesMSU")
 const validate = require("../middlewares/validateData")
 
 const {
@@ -8,11 +8,11 @@ const {
   createOne,
   updateOne,
   deleteOne,
-} = require("../controllers/misiones");
+} = require("../controllers/misionesMSU");
 
 router.get("/", getAll);
-router.post("/", validate(misionesSchema), createOne);
-router.put("/", validate(misionesSchema), updateOne);
+router.post("/", validate(misionesMSUSchema), createOne);
+router.put("/:_id", validate(misionesMSUSchema), updateOne);
 router.delete("/:_id", deleteOne);
 
 module.exports = router;

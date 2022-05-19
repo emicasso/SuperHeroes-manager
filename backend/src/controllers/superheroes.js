@@ -3,8 +3,10 @@ const {
 } = require("../../databases");
 
 module.exports = {
-  getAll: (req, res) => {
-    res.send("working");
+  //listar todas los superheroes existentes
+  getAll: async (req, res) => {
+    const superheroes = await habilidadesModel.find();
+    res.send(superheroes);
   },
 
   //crear un nuevo SuperHeroe
@@ -17,12 +19,28 @@ module.exports = {
       nivel
     });
     await newSuperhero.save()
-    res.send("Saved");
+    res.send(`SuperHero ${name} saved`);
   },
-  updateOne: (req, res) => {
-    res.send("working");
+
+
+  //actualizar un superheroe
+  updateOne: async (req, res) => {
+    const { _id } = req.params;
+    const { name, planetaOrigen, salud, nivel} = req.body;
+    await habilidadesModel.findByIdAndUpdate(_id, {
+      $set: { name, planetaOrigen, salud, nivel },
+    },
+    { useFindAndModify: false}
+    );
+    res.send(`${name} update`);
   },
-  deleteOne: (req, res) => {
-    res.send("working");
+
+
+  //borrar un superheroe
+  deleteOne: async (req, res) => {
+    const { _id } = req.params;
+    const remove = await superheroesModel.findByIdAndDelete(_id);
+    console.log(remove);
+    res.send(`${remove.name} Deleted from database`);
   },
 };

@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const superheroesSchema = require("../schemas/superheroes")
+const misionesMRSchema = require("../schemas/misionesMR")
 const validate = require("../middlewares/validateData")
 
 const {
@@ -8,11 +8,11 @@ const {
   createOne,
   updateOne,
   deleteOne,
-} = require("../controllers/superheroes");
+} = require("../controllers/misionesMSU");
 
 router.get("/", getAll);
-router.post("/", validate(superheroesSchema), createOne);
-router.put("/:_id", validate(superheroesSchema), updateOne);
+router.post("/", validate(misionesMRSchema), createOne);
+router.put("/:_id", validate(misionesMRSchema), updateOne);
 router.delete("/:_id", deleteOne);
 
 module.exports = router;
