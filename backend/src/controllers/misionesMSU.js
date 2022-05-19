@@ -13,7 +13,6 @@ module.exports = {
   createOne: async (req, res) => {
     const { name, superheroes } = req.body;
     const newMision = new misionesMSUModel({
-      type,
       name,
       superheroes,
     });

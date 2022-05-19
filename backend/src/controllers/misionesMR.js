@@ -13,7 +13,6 @@ const {
     createOne: async (req, res) => {
       const { name, superheroes } = req.body;
       const newMision = new misionesMRModel({
-        type,
         name,
         superheroes,
       });
