@@ -41,22 +41,22 @@ module.exports = {
     res.send(`${remove.name} Deleted from database`);
   },
 
-    //asignar un superheroe
-    assignSuperhero: async (req, res) => {
-      const { _id } = req.params;
-      const { superheroes } = req.body;
-      const misionesMSUUpdate = await misionesMSUModel.findByIdAndUpdate(_id, {
-        $push: { superheroes: superheroes },
-      });
-      res.send(`${misionesMSUUpdate.name} update`);
-    },
+    // //asignar un superheroe
+    // assignSuperhero: async (req, res) => {
+    //   const { _id } = req.params;
+    //   const { superheroes } = req.body;
+    //   const misionesMSUUpdate = await misionesMSUModel.findByIdAndUpdate(_id, {
+    //     $push: { superheroes: superheroes },
+    //   });
+    //   res.send(`${misionesMSUUpdate.name} update`);
+    // },
   
-    removeSuperhero: async (req, res) => {
-      const { _id } = req.params;
-      const { superheroes } = req.body;
-      const misionesMSUUpdate = await misionesMSUModel.findByIdAndUpdate(_id, {
-        $pull: { superheroes: superheroes },
-      });
-      res.send(`${misionesMSUUpdate.name} update`);
-    }
+    // removeSuperhero: async (req, res) => {
+    //   const { _id } = req.params;
+    //   const { superheroes } = req.body;
+    //   const misionesMSUUpdate = await misionesMSUModel.findByIdAndUpdate(_id, {
+    //     $pull: { superheroes: superheroes },
+    //   });
+    //   res.send(`${misionesMSUUpdate.name} update`);
+    // }
 };

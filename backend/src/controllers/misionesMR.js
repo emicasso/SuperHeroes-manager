@@ -41,22 +41,22 @@ module.exports = {
     res.send(`${remove.name} Deleted from database`);
   },
 
-  //asignar un superheroe
-  assignSuperhero: async (req, res) => {
-    const { _id } = req.params;
-    const { superheroes } = req.body;
-    const misionMRUpdate = await misionesMRModel.findByIdAndUpdate(_id, {
-      $push: { superheroes: superheroes },
-    });
-    res.send(`${misionMRUpdate.name} update`);
-  },
+  // //asignar un superheroe
+  // assignSuperhero: async (req, res) => {
+  //   const { _id } = req.params;
+  //   const { superheroes } = req.body;
+  //   const misionMRUpdate = await misionesMRModel.findByIdAndUpdate(_id, {
+  //     $push: { superheroes: superheroes },
+  //   });
+  //   res.send(`${misionMRUpdate.name} update`);
+  // },
 
-  removeSuperhero: async (req, res) => {
-    const { _id } = req.params;
-    const { superheroes } = req.body;
-    const misionMRUpdate = await misionesMRModel.findByIdAndUpdate(_id, {
-      $pull: { superheroes: superheroes },
-    });
-    res.send(`${misionMRUpdate.name} update`);
-  },
+  // removeSuperhero: async (req, res) => {
+  //   const { _id } = req.params;
+  //   const { superheroes } = req.body;
+  //   const misionMRUpdate = await misionesMRModel.findByIdAndUpdate(_id, {
+  //     $pull: { superheroes: superheroes },
+  //   });
+  //   res.send(`${misionMRUpdate.name} update`);
+  // },
 };

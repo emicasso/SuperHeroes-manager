@@ -41,22 +41,22 @@ module.exports = {
     res.send(`${remove.name} Deleted from database`);
   },
 
-  //asignar un superheroe
-  assignSuperhero: async (req, res) => {
-    const { _id } = req.params;
-    const { superheroes } = req.body;
-    const habilidadUpdate = await habilidadesModel.findByIdAndUpdate(_id, {
-      $push: { superheroes: superheroes },
-    });
-    res.send(`${habilidadUpdate.name} update`);
-  },
+  // //asignar un superheroe
+  // assignSuperhero: async (req, res) => {
+  //   const { _id } = req.params;
+  //   const { superheroes } = req.body;
+  //   const habilidadUpdate = await habilidadesModel.findByIdAndUpdate(_id, {
+  //     $push: { superheroes: superheroes },
+  //   });
+  //   res.send(`${habilidadUpdate.name} update`);
+  // },
 
-  removeSuperhero: async (req, res) => {
-    const { _id } = req.params;
-    const { superheroes } = req.body;
-    const habilidadUpdate = await habilidadesModel.findByIdAndUpdate(_id, {
-      $pull: { superheroes: superheroes },
-    });
-    res.send(`${habilidadUpdate.name} update`);
-  }
+  // removeSuperhero: async (req, res) => {
+  //   const { _id } = req.params;
+  //   const { superheroes } = req.body;
+  //   const habilidadUpdate = await habilidadesModel.findByIdAndUpdate(_id, {
+  //     $pull: { superheroes: superheroes },
+  //   });
+  //   res.send(`${habilidadUpdate.name} update`);
+  // }
 };
