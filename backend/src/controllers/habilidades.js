@@ -11,10 +11,9 @@ module.exports = {
 
   //crear nueva habilidad
   createOne: async (req, res) => {
-    const { name, superheroes } = req.body;
+    const { name } = req.body;
     const newHabilidad = new habilidadesModel({
       name,
-      superheroes,
     });
     await newHabilidad.save();
     res.send(`${name} saved`);
@@ -23,11 +22,13 @@ module.exports = {
   //actualizar una habilidad
   updateOne: async (req, res) => {
     const { _id } = req.params;
-    const { name, superheroes } = req.body;
-    await habilidadesModel.findByIdAndUpdate(_id, {
-      $set: { name, superheroes },
-    },
-    { useFindAndModify: false}
+    const { name } = req.body;
+    await habilidadesModel.findByIdAndUpdate(
+      _id,
+      {
+        $set: { name },
+      },
+      { useFindAndModify: false }
     );
     res.send(`${name} update`);
   },
@@ -39,4 +40,23 @@ module.exports = {
     console.log(remove);
     res.send(`${remove.name} Deleted from database`);
   },
+
+  //asignar un superheroe
+  assignSuperhero: async (req, res) => {
+    const { _id } = req.params;
+    const { superheroes } = req.body;
+    const habilidadUpdate = await habilidadesModel.findByIdAndUpdate(_id, {
+      $push: { superheroes: superheroes },
+    });
+    res.send(`${habilidadUpdate.name} update`);
+  },
+
+  removeSuperhero: async (req, res) => {
+    const { _id } = req.params;
+    const { superheroes } = req.body;
+    const habilidadUpdate = await habilidadesModel.findByIdAndUpdate(_id, {
+      $pull: { superheroes: superheroes },
+    });
+    res.send(`${habilidadUpdate.name} update`);
+  }
 };

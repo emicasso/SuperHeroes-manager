@@ -5,7 +5,7 @@ const {
 module.exports = {
   //listar todas los superheroes existentes
   getAll: async (req, res) => {
-    const superheroes = await habilidadesModel.find();
+    const superheroes = await superheroesModel.find();
     res.send(superheroes);
   },
 
@@ -27,7 +27,7 @@ module.exports = {
   updateOne: async (req, res) => {
     const { _id } = req.params;
     const { name, planetaOrigen, salud, nivel} = req.body;
-    await habilidadesModel.findByIdAndUpdate(_id, {
+    await superheroesModel.findByIdAndUpdate(_id, {
       $set: { name, planetaOrigen, salud, nivel },
     },
     { useFindAndModify: false}

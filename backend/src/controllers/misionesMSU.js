@@ -11,10 +11,9 @@ module.exports = {
 
   //crear nueva mision
   createOne: async (req, res) => {
-    const { name, superheroes } = req.body;
+    const { name } = req.body;
     const newMision = new misionesMSUModel({
-      name,
-      superheroes,
+      name      
     });
     await newMision.save();
     res.send(`${name} saved`);
@@ -23,11 +22,11 @@ module.exports = {
   //actualizar una mision
   updateOne: async (req, res) => {
     const { _id } = req.params;
-    const { name, superheroes } = req.body;
+    const { name } = req.body;
     await misionesMSUModel.findByIdAndUpdate(
       _id,
       {
-        $set: { name, superheroes },
+        $set: { name },
       },
       { useFindAndModify: false }
     );
@@ -41,4 +40,23 @@ module.exports = {
     console.log(remove);
     res.send(`${remove.name} Deleted from database`);
   },
+
+    //asignar un superheroe
+    assignSuperhero: async (req, res) => {
+      const { _id } = req.params;
+      const { superheroes } = req.body;
+      const misionesMSUUpdate = await misionesMSUModel.findByIdAndUpdate(_id, {
+        $push: { superheroes: superheroes },
+      });
+      res.send(`${misionesMSUUpdate.name} update`);
+    },
+  
+    removeSuperhero: async (req, res) => {
+      const { _id } = req.params;
+      const { superheroes } = req.body;
+      const misionesMSUUpdate = await misionesMSUModel.findByIdAndUpdate(_id, {
+        $pull: { superheroes: superheroes },
+      });
+      res.send(`${misionesMSUUpdate.name} update`);
+    }
 };
