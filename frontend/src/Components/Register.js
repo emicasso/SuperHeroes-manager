@@ -1,9 +1,23 @@
+import axios from "axios";
 import React from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 export default function Register() {
 
+  const [habilidades, setHabilidades] = useState([]);
+
+  const obtenerHabilidades = async () => {
+    const respuesta = await axios.get("/habilidades");
+    const habilidades = await respuesta.data;
+    setHabilidades(habilidades);
+    console.log(habilidades)
+  };
+
+  useEffect(() => {
+    obtenerHabilidades();
+  }, []);
 
  
 
@@ -62,10 +76,9 @@ export default function Register() {
   
             >
               <option>Selecionar Opcion</option>
-              <option>Fuerza</option>
-              <option>Rayos Laser</option>
-              <option>Elasticidad</option>
-              <option>Volar</option>
+              {habilidades.map((element, i)=>(
+                <option key={i}>{element.name}</option>
+              ))}
             </select>
             {/* <select class="form-select" value={inpval.habilidades} onChange={setData}>
               <option>Selecionar Opcion</option>

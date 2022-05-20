@@ -6,7 +6,7 @@ import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 const SuperheroesData = () => {
-  const [superheroes, setSuperheroes] = useState([]);
+const [superheroes, setSuperheroes] = useState([]);
 
   const obtenerSuperheroes = async () => {
     const respuesta = await axios.get("/superheroes");
