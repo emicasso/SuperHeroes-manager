@@ -6,7 +6,14 @@ import { NavLink } from "react-router-dom";
 
 export default function Register() {
 
+  const [superHeroe, setSuperHeroe] = useState();
   const [habilidades, setHabilidades] = useState([]);
+  const [habilidad, setHabilidad] = useState("");
+  const [nombre, setNombre] = useState("");
+  const [salud, setSalud] = useState("");
+  const [planetaOrigen, setPlanetaOrigen] = useState("");
+  const [nivel, setNivel] = useState();
+  const [nuevaHabilidad, setNuevaHabilidad] = useState("");
 
   const obtenerHabilidades = async () => {
     const respuesta = await axios.get("/habilidades");
@@ -15,8 +22,28 @@ export default function Register() {
     console.log(habilidades)
   };
 
+  const submit = async () => {
+    const respuesta = await axios.post("/superheroes", {
+      name: nombre,
+      planetaOrigen: planetaOrigen,
+      salud: salud,
+      nivel: nivel,
+      habilidad: habilidad,
+      nuevaHabilidad: nuevaHabilidad
+    });
+    const superHeroee = await respuesta.data;
+    setSuperHeroe(superHeroee);
+    console.log(superHeroe)
+  };
+
+function handleSubmit (e){
+  e.preventDefault()
+  submit()
+}
+
   useEffect(() => {
     obtenerHabilidades();
+    submit()
   }, []);
 
  
@@ -36,7 +63,8 @@ export default function Register() {
               className="form-control"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
-
+              value={nombre}
+              onChange={event => setNombre(event.target.value)}
             />
           </div>
           <div className="mb-3 col-lg-6 col-md-6 col-12">
@@ -48,6 +76,8 @@ export default function Register() {
               type="text"
               className="form-control"
               id="exampleInputPassword1"
+              value={planetaOrigen}
+              onChange={event => setPlanetaOrigen(event.target.value)}
 
             />
           </div>
@@ -58,6 +88,8 @@ export default function Register() {
             <select
               name="salud"
               className="form-select"
+              value={salud}
+              onChange={event => setSalud(event.target.value)}
 
             >
               <option>Selecionar Opcion</option>
@@ -73,9 +105,11 @@ export default function Register() {
             <select
               name="habilidades"
               className="form-select"
-  
+              value={habilidad}
+              onChange={event => setHabilidad(event.target.value)}
+
             >
-              <option>Selecionar Opcion</option>
+              <option>Nueva habilidad</option>
               {habilidades.map((element, i)=>(
                 <option key={i}>{element.name}</option>
               ))}
@@ -98,10 +132,26 @@ export default function Register() {
               type="number"
               className="form-control"
               id="exampleInputPassword1"
+              value={nivel}
+              onChange={event => setNivel(parseInt(event.target.value))}
 
             />
           </div>
-          <button type="submit"  className="btn btn-primary">
+          <div className="mb-3 col-lg-6 col-md-6 col-12">
+            <label htmlFor="exampleInputPasswordu1" className="form-label">
+              Nueva Habilidad
+            </label>
+            <input
+                name="origen"
+                type="text"
+                className="form-control"
+                id="exampleInputPasswor1"
+                value={nuevaHabilidad}
+                onChange={event => setNuevaHabilidad(event.target.value)}
+
+            />
+          </div>
+          <button type="submit" onClick={handleSubmit} className="btn btn-primary">
             Submit
           </button>
         </div>

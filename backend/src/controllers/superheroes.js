@@ -11,13 +11,18 @@ module.exports = {
 
   //crear un nuevo SuperHeroe
   createOne: async (req, res) => {
-    const { name, planetaOrigen, salud, nivel } = req.body;
+    console.log("fdddddddddddddddddddddddddddddddddddd")
+
+    const { name, planetaOrigen, salud, nivel, habilidad, nuevaHabilidad} = req.body;
     const newSuperhero = new superheroesModel({
       name,
       planetaOrigen,
       salud,
       nivel,
+      habilidad,
+      nuevaHabilidad
     });
+    console.log(newSuperhero)
     await newSuperhero.save();
     res.send(`SuperHero ${name} saved`);
   },

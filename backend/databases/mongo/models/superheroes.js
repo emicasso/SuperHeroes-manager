@@ -5,6 +5,8 @@ const schema = new Schema({
   name: { type: String, required: true, unique: true },
   planetaOrigen: { type: String, required: true },
   salud: { type: String, required: true },
+  nuevaHabilidad: { type: String},
+  habilidad: { type: String},
   nivel: { type: Number, required: true },
   habilidades: [{ type: Schema.Types.ObjectId, ref:"habilidades", autopopulate: true}],
   misionesMR: [{ type: Schema.Types.ObjectId, ref:"misionesMR", autopopulate: true}],
